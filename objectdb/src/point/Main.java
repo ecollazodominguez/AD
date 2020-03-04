@@ -63,8 +63,7 @@ public class Main {
         //exemplo facelo para o valor  6)
         
        em.getTransaction().begin();
-       Query q4 = em.createQuery(
-      "UPDATE Point SET y = 1000 WHERE y < :p",Point.class);
+       Query q4 = em.createQuery("UPDATE Point SET y = 1000 WHERE y < :p");
        int updateCount = q4.setParameter("p", 6).executeUpdate();
         System.out.println("filas modificadas: "+updateCount);
        em.getTransaction().commit();
@@ -72,18 +71,17 @@ public class Main {
         //borrado masivo selectivo masivo(delete queries).
         //Eliminar todos os puntos cuxo valor do atributo 
         //y sexa inferior a un valor pasado por parametro
-        //( por exemplo facelo para o valor 8 )
+        //(por exemplo facelo para o valor 8 )
         
        em.getTransaction().begin();
-       Query q5 = em.createQuery(
-      "DELETE FROM Point WHERE y < :p");
+       Query q5 = em.createQuery("DELETE FROM Point WHERE y < :p");
   int deletedCount = q5.setParameter("p", 8).executeUpdate();
         System.out.println("filas eliminadas: "+deletedCount);
        em.getTransaction().commit();
         
         // Retrieve all the Point objects from the database:
         TypedQuery<Point> query =
-            em.createQuery("SELECT p FROM Point p", Point.class);
+            em.createQuery("SELECT p FROM Point p",Point.class);
         List<Point> results = query.getResultList();
         for (Point p : results) {
             System.out.println(p);
